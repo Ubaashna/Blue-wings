@@ -1,0 +1,40 @@
+#python code
+
+#slow division algorithm
+
+dividend = int(input("Enter the dividend: "))
+divisor = int(input("Enter the divisor: "))
+
+quotient = 0
+remainder = 0
+
+while dividend >= divisor:
+    dividend -= divisor
+    quotient += 1
+
+remainder = dividend
+
+print("Quotient = ", quotient)
+print("Remainder = ", remainder)
+
+
+#fast division algorithm
+
+dividend = int(input("Enter the dividend: "))
+divisor = int(input("Enter the divisor: "))
+
+p = max(dividend.bit_length(), divisor.bit_length()) + 1
+
+quotient = 0
+remainder = dividend
+
+for i in range(p):
+    quotient <<= 1
+    remainder <<= 1
+    remainder |= (dividend >> (p - 1 - i)) & 1
+    if remainder >= divisor:
+        remainder -= divisor
+        quotient |= 1
+
+print("Quotient = ", quotient)
+print("Remainder = ", remainder)
